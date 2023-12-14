@@ -532,22 +532,19 @@ body {
     }
 
     displayMCQs(mcqs);
+    function copyAnswer() {
+    const answerText = document.querySelector('.question h5 + img').alt;
+    const el = document.createElement('textarea');
+    el.value = answerText;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    alert('Answer copied to clipboard!');
+}
 
- // Function to copy answer text to clipboard
- function copyAnswer() {
-        const answerText = document.querySelector('.question h5 + img').alt; // Fetch the alt text from the image
-        const el = document.createElement('textarea');
-        el.value = answerText;
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-        alert('Answer copied to clipboard!');
-    }
-
-    // Add event listener to trigger the copy function on click
-    const answerField = document.querySelector('.answer');
-    answerField.addEventListener('click', copyAnswer);
+const answerField = document.querySelector('.answer');
+answerField.addEventListener('click', copyAnswer);
 
 </script>
 
