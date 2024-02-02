@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>MCQ Display</title>
     <style>
@@ -9,544 +10,703 @@
             border-radius: 5px;
             padding: 10px;
         }
+        
         .question {
             font-weight: bold;
             margin-bottom: 10px;
         }
+        
         .options {
             list-style: none;
             padding: 0;
         }
+        
         .option {
             margin-bottom: 5px;
             cursor: pointer;
             padding: 5px;
         }
+        
         .correct {
-            background-color: #8BC34A; /* Green for correct answer */
+            background-color: #8BC34A;
+            /* Green for correct answer */
         }
+        
         .incorrect {
-            background-color: #fff; /* White for incorrect answers */
+            background-color: #fff;
+            /* White for incorrect answers */
         }
         /* Common styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0; /* Light mode background color */
-    color: #333; /* Light mode text color */
-}
-
-/* MCQ Styles */
-.mcq-container {
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.question {
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.options {
-    list-style: none;
-    padding: 0;
-}
-
-.option {
-    margin-bottom: 5px;
-    cursor: pointer;
-    padding: 5px;
-}
-
-.correct {
-    background-color: #8BC34A; /* Green for correct answer */
-}
-
-.incorrect {
-    background-color: #fff; /* White for incorrect answers */
-}
-
-/* Dark Mode Styles */
-.dark-mode {
-    background-color: #333; /* Dark mode background color */
-    color: #fff; /* Dark mode text color */
-}
-.answer {
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            /* Light mode background color */
+            color: #333;
+            /* Light mode text color */
+        }
+        /* MCQ Styles */
+        
+        .mcq-container {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        
+        .question {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .option {
+            margin-bottom: 5px;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .correct {
+            background-color: #8BC34A;
+            /* Green for correct answer */
+        }
+        
+        .incorrect {
+            background-color: #fff;
+            /* White for incorrect answers */
+        }
+        /* Dark Mode Styles */
+        
+        .dark-mode {
+            background-color: #333;
+            /* Dark mode background color */
+            color: #fff;
+            /* Dark mode text color */
+        }
+        
+        .answer {
             cursor: pointer;
             color: blue;
             text-decoration: underline;
         }
-        
     </style>
 </head>
+
 <body>
 
-<div id="mcqsContainer">
-    <!-- MCQs will be inserted here -->
-</div>
-
-
-
-</head>
-<body>
-
-<div class="question">
-    <h1>Broad Question</h1>
-    <h4>
-        <p>Here's a general prompt or overview of what the questions will cover.</p>
-    </h4>
-</div>
-<h1 style="text-align: center ;">Broad question(Click the text and Copy)</h1>
-<div class="question">
-    <h3>Question 1</h3>
-    <h4>
-        <p><p>Consider a scenario where you are managing a company&#8216;s employee</p><p>database, and you have a table named &#8216;employees&#8216; with columns such as</p><p>&#8216;employee_id,&#8216; &#8216;department_id,&#8216; and &#8216;salary.&#8216; Your task is to write a SQL query to</p><p>identify the top 3 salaries in each department.</p><p><br></p><p>Provide a query that selects the &#8216;department_id,&#8216; &#8216;employee_id,&#8216; and &#8216;salary&#8216; for</p><p>the top 3 salaries in each department. Use appropriate aliases for clarity in the</p><p>result set. Assume that the table is named &#8216;employees&#8216; and contains relevant</p><p>data.</p></p>
-       
-    </h4>
-        <h5 class="answer">Answer:
-          <pre>
-            <span class="blue-text">WITH</span> RankedSalaries AS (<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="blue-text">SELECT</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;department_id,<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;employee_id,<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;salary,<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROW_NUMBER() <span class="blue-text">OVER</span> (<span class="blue-text">PARTITION BY</span> department_id <span class="blue-text">ORDER BY</span> salary <span class="blue-text">DESC</span>) <span class="blue-text">AS</span> salary_rank<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="blue-text">FROM</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;employees<br>
-            )<br>
-            <span class="blue-text">SELECT</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;department_id,<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;employee_id,<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;salary<br>
-            <span class="blue-text">FROM</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;RankedSalaries<br>
-            <span class="blue-text">WHERE</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;salary_rank <= 3;
-        </pre>
-
-
-        </h5>
-
-    <img src="img/1.png" alt="">
-</div>
-
-
-<div class="question">
-    <h3>Question 2</h3>
-    <h4>
-        <p>You&#8216;re managing a database for a small bookstore. The database contains two tables: &#8216;Books&#8216; and</p><p>&#8216;Authors&#8216;.</p><p>Tables:</p><p>Books:</p><p>Columns: BookID (Primary Key), Title, AuthorID (Foreign Key), Genre, Price</p><p>Authors:</p><p>Columns: AuthorID (Primary Key), AuthorName, Nationality</p><p><br></p><p>Write an SQL query that retrieves the title and price of all books along with the corresponding author&#8216;s</p><p>name.</p>
-    </h4>
-        <h5 class="answer">Answer:
-          <pre>
-            <span class="sql-keyword">SELECT</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;B.Title,<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;B.Price,<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;A.AuthorName<br>
-            <span class="sql-keyword">FROM</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Books B<br>
-            <span class="sql-keyword">INNER JOIN</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Authors A <span class="sql-keyword">ON</span> B.AuthorID = A.AuthorID;
-        </pre>
-
-        </h5>
-
-    <img src="img/Screenshot_1.png" alt="">
-</div>
-
-
-
-
-<div class="question">
-    <h3>Question 3</h3>
-    <h4>
-        <p>Considering a table named "Orders" with columns: "OrderID", "OrderDate", and "TotalAmount", what</p><p>query would find the percentage of the total amount for each order against the total amount of all</p><p>orders?</p>    </h4>
-            <h5 class="answer">Answer:
-              <pre>
-                <span class="sql-keyword">SELECT</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;OrderID,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;OrderDate,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;TotalAmount,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;(TotalAmount * 100.0) / SUM(TotalAmount) <span class="sql-keyword">OVER</span> () <span class="sql-keyword">AS</span> Percentage<br>
-                <span class="sql-keyword">FROM</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;Orders;
-            </pre>
-            </h5>
-
-        <img src="img/Screenshot_2.png" alt="">
-      </div>
-
-<div class="question">
-    <h3>Question 4</h3>
-    <h4>
-        <p>You&#8216;re tasked with managing a database for an e-commerce website. The database contains several</p><p>tables, including &#8216;Products&#8216;, &#8216;Customers&#8216;, &#8216;Orders&#8216;, and &#8216;OrderDetails&#8216;. The company wants to retrieve</p><p>specific information about their top-selling products in the last quarter.</p><p><br></p><p>Create an SQL query that fetches the top 5 best-selling products based on the quantity sold within the</p><p>last quarter. Include the product name, total quantity sold, and revenue generated by each product.</p><p>Additionally, ensure that only products with sales in the last quarter are included in the result.</p><p><br></p><p>Tables:</p><p>Products:(ProductID, ProductName)</p><p>Orders:( OrderID, CustomerID, OrderDate)</p><p>OrderDetails:( OrderID, ProductID, Quantity, UnitPrice)</p><p><br></p><p>Your query should filter data for the last quarter based on the OrderDate column in the Orders table.</p>
-</h4>
-    <h5 class="answer">Answer:
-      <pre>
-        <span class="sql-keyword">WITH</span> LastQuarterOrders AS (<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-keyword">SELECT</span><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OD.ProductID,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P.ProductName,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SUM(OD.Quantity) <span class="sql-keyword">AS</span> TotalQuantity,<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SUM(OD.Quantity * OD.UnitPrice) <span class="sql-keyword">AS</span> Revenue<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-keyword">FROM</span><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OrderDetails OD<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-keyword">INNER JOIN</span><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Orders O <span class="sql-keyword">ON</span> OD.OrderID = O.OrderID<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-keyword">INNER JOIN</span><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Products P <span class="sql-keyword">ON</span> OD.ProductID = P.ProductID<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-keyword">WHERE</span><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O.OrderDate >= DATEADD(QUARTER, DATEDIFF(QUARTER, 0, GETDATE()) - 1, 0)<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-keyword">AND</span> O.OrderDate < DATEADD(QUARTER, DATEDIFF(QUARTER, 0, GETDATE()), 0)<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-keyword">GROUP BY</span><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OD.ProductID, P.ProductName<br>
-        )<br>
-        <span class="sql-keyword">SELECT TOP 5</span><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;ProductID,<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;ProductName,<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;TotalQuantity,<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;Revenue<br>
-        <span class="sql-keyword">FROM</span><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;LastQuarterOrders<br>
-        <span class="sql-keyword">ORDER BY</span><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;TotalQuantity <span class="sql-keyword">DESC</span>;<br>
-    </pre>
-    </h5>
-
-<img src="img/Screenshot_3.png" alt="">
+    <div id="mcqsContainer">
+        <!-- MCQs will be inserted here -->
     </div>
 
 
-    <div class="question">
-        <h3>Question 5</h3>
-        <h4>
-          <p>Customers Table:</p><p>CustomerID (Primary Key),FirstName,LastName,BirthDate,City</p><p>Transactions Table:</p><p>TransactionID (Primary Key),CustomerID (Foreign Key),Product,Quantity,Price,PurchaseDate</p><p><br></p><p>Write an SQL query to identify customers who have purchased at least 2 quantities of products (chips</p><p>and chocolate), with the total price not exceeding 300 taka. Additionally, these customers must be:</p><p>Aged over 22 years old based on their birth date.Living in Dhaka.</p><p>The query should retrieve the names of customers who meet these criteria.</p>
-        </h4>
-            <h5 class="answer">Answer:
-              <pre>
-                <span class="sql-keyword">WITH</span> CustomerTransactions AS (<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-keyword">SELECT</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.CustomerID,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SUM(t.Quantity) <span class="sql-keyword">AS</span> TotalQuantity,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SUM(t.Price) <span class="sql-keyword">AS</span> TotalPrice<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-keyword">FROM</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transactions t<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-keyword">WHERE</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.Product IN ('chips', 'chocolate')<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-keyword">GROUP BY</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.CustomerID<br>
-                )<br>
-                <span class="sql-keyword">SELECT</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;c.FirstName,<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;c.LastName<br>
-                <span class="sql-keyword">FROM</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Customers c<br>
-                <span class="sql-keyword">JOIN</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;CustomerTransactions ct <span class="sql-keyword">ON</span> c.CustomerID = ct.CustomerID<br>
-                <span class="sql-keyword">WHERE</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;c.City = 'Dhaka'<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-keyword">AND</span> DATEDIFF(YEAR, c.BirthDate, GETDATE()) > 22<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-keyword">AND</span> ct.TotalQuantity >= 2 <br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="sql-keyword">AND</span> ct.TotalPrice <= 300;<br>
-            </pre>
-            </h5>
 
-        <img src="img/Screenshot_4.png" alt="">
+    </head>
+
+    <body>
+
+        <div class="question">
+            <h1>Broad Question</h1>
+            <h4>
+                <p>Here's a general prompt or overview of what the questions will cover.</p>
+            </h4>
+        </div>
+
+
+
+
 
 
         </div>
 
+        <script>
+            var mcqs = [{
+                    "Question": [{
+                        "QSerialNo": 1,
+                        "QID": 88785,
+                        "Question": " 27 Slot 1 Choose the correct synonym for- “Menacing”",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "Encouraging",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Alarming",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "Promising",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Auspicious",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 2,
+                        "QID": 88786,
+                        "Question": "27 Choose the correct synonym for- “Extempore”",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "Planned",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Improvise",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Impromptu",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "Immediate",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 3,
+                        "QID": 88787,
+                        "Question": "27 EAGER : INDIFFERENT",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "concerned : careful",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "anxious : nervous",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "enthusiastic: half hearted",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "devoted: dedicated",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 4,
+                        "QID": 88788,
+                        "Question": "27 DISTORT : TWIST",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "Straighten : Bend",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Deform : Reform",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Harmonize : Balance",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "Observe : Blur",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 5,
+                        "QID": 88789,
+                        "Question": "27 'Maiden speech' mean's.",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "Late speech",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Early speech",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Final speech",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "First speech",
+                            "RightAnswer": true
+                        }]
+                    }, {
+                        "QSerialNo": 6,
+                        "QID": 88790,
+                        "Question": "27 The correct spelling is-",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "Humourous",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Humourious",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Humorous",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "Humorious",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 7,
+                        "QID": 88791,
+                        "Question": "The expression ‘take into account’ means",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "assess",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "consider",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "count numbers",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "think seriously",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 8,
+                        "QID": 88792,
+                        "Question": "If a substance is cohesive, it tends to…….",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "retain heat",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "break easily",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "stick together",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "bend without too much difficulty",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 9,
+                        "QID": 88793,
+                        "Question": "Successive discount of 20% and 15% are equal to a single discount of –",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "30%",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "32%",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "34%",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "35%",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 10,
+                        "QID": 88794,
+                        "Question": "City B is 5 miles east of city A. City C is 10 miles southeast of city B. Which of the following is the closest to the distance from city A to city C.?",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "11 miles",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "12 miles",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "13 miles",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "14 miles",
+                            "RightAnswer": true
+                        }]
+                    }, {
+                        "QSerialNo": 11,
+                        "QID": 88795,
+                        "Question": "Mr.  Ahsan spent 1/3 of his money for a pen and Tk.5 for a pencil. If he still had ½ of his money left, how much money did he have originally?",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "50",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "30",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "60",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "20",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 12,
+                        "QID": 88796,
+                        "Question": "If two typists can type two pages in the two minutes how many typists will it take to type 18 pages in six minutes.",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "3",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "6",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "9",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "12",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 13,
+                        "QID": 88797,
+                        "Question": "Two men, starting at the same point, walk in opposite directions for 4 meters, turn left and walk another 3 meters. What is the distance between them?",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "7 meters",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "14 meters",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "10 meters",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "6 meters",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 14,
+                        "QID": 88798,
+                        "Question": "30% of 10 is 10% of which?",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "30",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "60",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "300",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "600",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 15,
+                        "QID": 88799,
+                        "Question": "If x+y=12 and x-y=2, then xy will be-",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "35",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "140",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "70",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "144",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 16,
+                        "QID": 88800,
+                        "Question": "If in 1997, 1998 and 1999 a worker received 10% more in salary each year then he did the previous year, how much more did he receive in 1999 than in 1997?",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "10%",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "11%",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "20%",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "21%",
+                            "RightAnswer": true
+                        }]
+                    }, {
+                        "QSerialNo": 17,
+                        "QID": 88801,
+                        "Question": "Lunar eclipse occurs on-",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "A moonless day",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "A new moon day",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "A full moon day",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "A half moon day",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 18,
+                        "QID": 88802,
+                        "Question": "Who is known as the 'Lady of the Lamp'?",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "Sorojini Naidu",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Hellen Killer",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Florence Nightingale",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "Madame Teresa",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 19,
+                        "QID": 88803,
+                        "Question": "World biggest Airport situated at-",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "New York",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "Delhi",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "London",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Dammam",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 20,
+                        "QID": 88804,
+                        "Question": "How many members’ country in SAARC?",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "7",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "6",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "9",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "8",
+                            "RightAnswer": true
+                        }]
+                    }, {
+                        "QSerialNo": 21,
+                        "QID": 88805,
+                        "Question": "Women’s Asia Cup Cricket-2018 held in-",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "Malayasia",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "India",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Bangladesh",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Nepal",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 22,
+                        "QID": 88806,
+                        "Question": "Five cars have a race. The Honda beat Dodge but couldn't overtake the Smart Car. The Mini failed to overtake the Audi but beat the Smart Car. Which car came third?",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "Honda",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Dodge",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Smart Card",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "Mini",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 23,
+                        "QID": 88807,
+                        "Question": "What do you understand by-“If K is there L has to be there”",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "A & L always be together",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "K is not there, then L will not be there",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "K is there, then L will also be there",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "K & L will always be not together",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 24,
+                        "QID": 88808,
+                        "Question": "Shortcut key of reviewing a text-",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "Honda",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Ctrl+Q",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "Ctrl+P",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Ctrl+V",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 25,
+                        "QID": 88809,
+                        "Question": "Computer virus is a-\r\n\r\n\"One's of the warmest winters on record has put consumers in the mood to spend money. Spending is likely to be the strongest in thirteen years. During the month of February, sales of existing single-family homes hit an annual record rate of 4.75 million.\r\nThis paragraph best supports the statement that-\r\nEnter line\r\nNew line\"\r\n\"One's of the warmest winters on record has put consumers in the mood to spend money. Spending is likely to be the strongest in thirteen years. During the month of February, sales of existing single-family homes hit an annual record rate of 4.75 million.\r\nThis paragraph best supports the statement that-\r\nEnter line\r\n655 characters",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "Hardware",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Software",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "Windows",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "Spam\r\n\r\n123One's of the warmest winters on record has put consumers in the mood to spend money. Spending is likely to be the strongest in thirteen years. During the 161\r\n",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 26,
+                        "QID": 88810,
+                        "Question": "What will be the output of the following C++ code?\r\n\r\n#include <iostream>\r\nusing namespace std;\r\nint main()\r\n{\r\n\r\n       int i;\r\n      const char *arr[] = {\"C\", \"C++\", \"Java\",     \"VBA\"};\r\n       const char *(*ptr)[4] = &arr;\r\n       out << ++(*ptr)[2];\r\n       return 0;\r\n\r\n}",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "ava",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "java",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 27,
+                        "QID": 88811,
+                        "Question": "∆ ABC  is right angle at B. If m∠C = 450 Then find the value of ( cosec A - √3) = ?",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "(4-√3)/2",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "√2-√3",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "minus symbol √3/2",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 28,
+                        "QID": 88812,
+                        "Question": "The sum of the roots of ax² + bx + c = 0 is\r\n144 cm²",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "α + β = −b ⁄ a",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "α + β = b ⁄ a, 144 cm² false",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "α + β = - a ⁄ b",
+                            "RightAnswer": false
+                        }]
+                    }, {
+                        "QSerialNo": 29,
+                        "QID": 88813,
+                        "Question": "Consider ΔABD such that angle ADB = 20° and C is a point on BD such that AB=AC and CD=CA. Then the measure of angle ABC is\r\nOption 1 its true && true & \"double quote's",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": "Option 1 its true && true & \"double quote's",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "30°",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "40°",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "45°",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "60°",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "&& || ! True",
+                            "RightAnswer": true
+                        }]
+                    }, {
+                        "QSerialNo": 30,
+                        "QID": 88814,
+                        "Question": "রাজমিস্ত্রি ভেঙে যাওয়া ছাদটি সারলেন। বাক্যের ক্রিয়াটি কোন জাতীয় ভাবের ক্রিয়া ? 31 slot 1",
+                        "QMarks": "01.00",
+                        "Options": [{
+                            "OptText": " trivial",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": "unimportant",
+                            "RightAnswer": false
+                        }, {
+                            "OptText": " important",
+                            "RightAnswer": true
+                        }, {
+                            "OptText": "insignificant, \r\n     অনুজ্ঞা ভাব new line",
+                            "RightAnswer": false
+                        }]
+                    }]
+                }
 
-        
-</div>
+            ];
 
-<script>
-    var mcqs = [
-    {
-      "QSerialNo": 1,
-      "QID": 78747,
-      "Question": "<p>Which type of command is ‘COMMIT’?</p>",
-      "QMarks": "01.00",
-      "Options": [
-        {
-          "OptText": "<p>DDL</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>DML</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>DCL &amp; TCL</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>None of the above</p>",
-          "RightAnswer": true
-        }
-      ]
-    },
-    {
-      "QSerialNo": 2,
-      "QID": 78748,
-      "Question": "<p>Which one will be the output of: SELECT FLOOR(-3.526)?</p>",
-      "QMarks": "01.00",
-      "Options": [
-        {
-          "OptText": "<p>-3.53</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>-4</p>",
-          "RightAnswer": true
-        },
-        {
-          "OptText": "<p>-3.5</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>-3.6</p>",
-          "RightAnswer": false
-        }
-      ]
-    },
-    {
-      "QSerialNo": 3,
-      "QID": 78749,
-      "Question": "<p>Which keyword is used in MSSQL to retrieve unique values from a table?</p>",
-      "QMarks": "01.00",
-      "Options": [
-        {
-          "OptText": "<p>SELECT DISTINCT</p>",
-          "RightAnswer": true
-        },
-        {
-          "OptText": "<p>SELECT UNIQUE</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>SELECT UNIQUEVALUES</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>SELECT UNIQUE</p>",
-          "RightAnswer": false
-        }
-      ]
-    },
-    {
-      "QSerialNo": 4,
-      "QID": 78750,
-      "Question": "<p>In MongoDB, which operator is used for querying documents based on equality?</p>",
-      "QMarks": "01.00",
-      "Options": [
-        {
-          "OptText": "<p>$eq</p>",
-          "RightAnswer": true
-        },
-        {
-          "OptText": "<p>$ne</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>$gt</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>$in</p>",
-          "RightAnswer": false
-        }
-      ]
-    },
-    {
-      "QSerialNo": 5,
-      "QID": 78751,
-      "Question": "<p>In a collection named \"Orders\" with fields: \"orderID\", \"date\", and \"totalAmount\", which query</p><p>would retrieve documents with a total amount greater than 1000 and ordered on or after</p><p>\"2023-01-01\", sorted by date in descending order?</p>",
-      "QMarks": "01.00",
-      "Options": [
-        {
-          "OptText": "<p>db.Orders.find({ totalAmount: { $gt: 1000 }, date: { $gte: \"2023-01-01\" } }).sort({ date: -1 })</p>",
-          "RightAnswer": true
-        },
-        {
-          "OptText": "<p>db.Orders.find({ \"totalAmount\": { $gt: 1000 }, \"date\": { $gte: \"2023-01-01\" } }).sort({ date: -1 })</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>db.Orders.find({ totalAmount: { $gt: 1000 }, date: { $gte: ISODate(\"2023-01-01\") } }).sort({ date: -1})</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>db.Orders.find({ totalAmount: { $gte: 1000 }, date: { $gte: \"2023-01-01\" } }).sort({ date: -1 })</p>",
-          "RightAnswer": false
-        }
-      ]
-    },
-    {
-      "QSerialNo": 6,
-      "QID": 78752,
-      "Question": "<p>Which normalization level ensures that each column contains a single value and avoids repeating</p><p>groups of data?</p>",
-      "QMarks": "01.00",
-      "Options": [
-        {
-          "OptText": "<p>First Normal Form (1NF)</p>",
-          "RightAnswer": true
-        },
-        {
-          "OptText": "<p>Second Normal Form (2NF)</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>&nbsp;Third Normal Form (3NF)</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>Fourth Normal Form (4NF)</p>",
-          "RightAnswer": false
-        }
-      ]
-    },
-    {
-      "QSerialNo": 7,
-      "QID": 78758,
-      "Question": "<p>Which of the following syntax is correct in MS SQL?</p>",
-      "QMarks": "01.00",
-      "Options": [
-        {
-          "OptText": "<p>ADDDATE(date, days)</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>DATEADD(interval, number, date)</p>",
-          "RightAnswer": true
-        },
-        {
-          "OptText": "<p>DATE_ADD(date, INTERVAL value add unit)</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>a and b</p>",
-          "RightAnswer": false
-        }
-      ]
-    },
-    {
-      "QSerialNo": 8,
-      "QID": 78759,
-      "Question": "<p>In a table named \"Products\" with columns: \"ProductID\", \"ProductName\", \"UnitPrice\", and</p><p>\"UnitsInStock\", which query would return the top 5 products with the highest unit price per unit</p><p>in stock?</p>",
-      "QMarks": "01.00",
-      "Options": [
-        {
-          "OptText": "<p>SELECT TOP 5 ProductName, UnitPrice FROM Products ORDER BY UnitPrice * UnitsInStock DESC</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>SELECT TOP 5 ProductName, UnitPrice FROM Products ORDER BY (UnitPrice / UnitsInStock) DESC</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>&nbsp;SELECT TOP 5 ProductName, UnitPrice FROM Products ORDER BY UnitPrice / UnitsInStock DESC</p>",
-          "RightAnswer": true
-        },
-        {
-          "OptText": "<p>SELECT TOP 5 ProductName, UnitPrice FROM Products ORDER BY UnitPrice DESC, UnitsInStock</p>",
-          "RightAnswer": false
-        }
-      ]
-    },
-    {
-      "QSerialNo": 9,
-      "QID": 78760,
-      "Question": "<p>Your thoughts on COMMIT in a User Defined Function (UDF)?</p>",
-      "QMarks": "01.00",
-      "Options": [
-        {
-          "OptText": "<p>You can not use COMMIT in UDF</p>",
-          "RightAnswer": true
-        },
-        {
-          "OptText": "<p>Auto commit is there, no need to COMMIT</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>Both a and b is correct depending on the circumstance</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>None of the above</p>",
-          "RightAnswer": false
-        }
-      ]
-    },
-    {
-      "QSerialNo": 10,
-      "QID": 78761,
-      "Question": "<p>UNIQUE KEY CAN BE</p>",
-      "QMarks": "01.00",
-      "Options": [
-        {
-          "OptText": "<p>NULL</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>NOT NULL</p>",
-          "RightAnswer": false
-        },
-        {
-          "OptText": "<p>BOTH NULL and NOT NULL</p>",
-          "RightAnswer": true
-        },
-        {
-          "OptText": "<p>Depends on situation</p>",
-          "RightAnswer": false
-        }
-      ]
-    }
-    ];
+            function displayMCQs(mcqs) {
+                var mcqsContainer = document.getElementById('mcqsContainer');
+                mcqs.forEach(function(mcq) {
+                    var mcqDiv = document.createElement('div');
+                    mcqDiv.classList.add('mcq-container');
 
-    function displayMCQs(mcqs) {
-        var mcqsContainer = document.getElementById('mcqsContainer');
-        mcqs.forEach(function(mcq) {
-            var mcqDiv = document.createElement('div');
-            mcqDiv.classList.add('mcq-container');
+                    var question = document.createElement('div');
+                    question.classList.add('question');
+                    question.innerHTML = '<h3>Question ' + mcq.QSerialNo + ': </h3>' + mcq.Question;
+                    mcqDiv.appendChild(question);
 
-            var question = document.createElement('div');
-            question.classList.add('question');
-            question.innerHTML = '<h3>Question ' + mcq.QSerialNo + ': </h3>' + mcq.Question;
-            mcqDiv.appendChild(question);
+                    var optionsList = document.createElement('ul');
+                    optionsList.classList.add('options');
+                    mcq.Options.forEach(function(option) {
+                        var optionItem = document.createElement('li');
+                        optionItem.classList.add('option');
+                        var className = option.RightAnswer ? 'correct' : 'incorrect';
+                        optionItem.classList.add(className);
+                        optionItem.innerHTML = option.OptText;
+                        optionsList.appendChild(optionItem);
+                    });
+                    mcqDiv.appendChild(optionsList);
 
-            var optionsList = document.createElement('ul');
-            optionsList.classList.add('options');
-            mcq.Options.forEach(function(option) {
-                var optionItem = document.createElement('li');
-                optionItem.classList.add('option');
-                var className = option.RightAnswer ? 'correct' : 'incorrect';
-                optionItem.classList.add(className);
-                optionItem.innerHTML = option.OptText;
-                optionsList.appendChild(optionItem);
-            });
-            mcqDiv.appendChild(optionsList);
+                    mcqsContainer.appendChild(mcqDiv);
+                });
+            }
 
-            mcqsContainer.appendChild(mcqDiv);
-        });
-    }
+            displayMCQs(mcqs);
 
-    displayMCQs(mcqs);
-    function copyAnswer() {
-    const answerText = document.querySelector('.question h5 + img').alt;
-    const el = document.createElement('textarea');
-    el.value = answerText;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-    alert('Answer copied to clipboard!');
-}
+            function copyAnswer() {
+                const answerText = document.querySelector('.question h5 + img').alt;
+                const el = document.createElement('textarea');
+                el.value = answerText;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+                alert('Answer copied to clipboard!');
+            }
 
-const answerField = document.querySelector('.answer');
-answerField.addEventListener('click', copyAnswer);
+            const answerField = document.querySelector('.answer');
+            answerField.addEventListener('click', copyAnswer);
+        </script>
 
-</script>
+    </body>
 
-</body>
 </html>
